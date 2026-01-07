@@ -1,0 +1,306 @@
+/* --- Variables & Core Setup --- */
+:root {
+    --primary-color: #00d2ff;
+    --secondary-color: #0081a7;
+    --text-light: #ffffff;
+    --text-dark: #222222;
+    --bg-light: #f9f9f9;
+    --transition: all 0.3s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Navigation Bar --- */
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    transition: var(--transition);
+    z-index: 1000;
+    background: transparent;
+}
+
+/* Scrolled state: Solid white background */
+#navbar.scrolled {
+    padding: 15px 8%;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Logo Logic */
+.logo {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 1px;
+}
+
+#navbar.scrolled .logo {
+    color: var(--text-dark) !important;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+/* Nav Links Logic */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+/* Forces standard links to turn dark when navbar is white */
+#navbar.scrolled .nav-links a:not(.btn-contact) {
+    color: var(--text-dark) !important;
+}
+
+/* Hover underline effect */
+.nav-links a:not(.btn-contact)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-links a:not(.btn-contact):hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* --- GET STARTED BUTTON (High-Contrast Fix) --- */
+.btn-contact {
+    background: var(--primary-color);
+    padding: 10px 22px;
+    border-radius: 5px;
+    color: #ffffff !important; /* Forces text to stay white */
+    font-weight: 600;
+    border: 2px solid var(--primary-color);
+    display: inline-block;
+}
+
+/* Button hover at the top (becomes white with blue text) */
+.btn-contact:hover {
+    background: #ffffff;
+    color: var(--primary-color) !important;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Button behavior when navbar turns white on scroll */
+#navbar.scrolled .btn-contact {
+    background: var(--text-dark) !important; /* Becomes dark to stand out on white bar */
+    border-color: var(--text-dark) !important;
+    color: #ffffff !important; /* FORCED WHITE TEXT - Stops blending */
+}
+
+/* Button hover when scrolled (turns blue) */
+#navbar.scrolled .btn-contact:hover {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important; 
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 0 10%;
+}
+
+.hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+.hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; opacity: 0.9; }
+
+.btn-main, .btn-sub {
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.btn-main { background: var(--primary-color); color: white; }
+.btn-sub { border: 2px solid white; color: white; }
+.btn-sub:hover { background: white; color: var(--text-dark); }
+
+/* --- About Section (Enhanced Layout) --- */
+.about-section {
+    padding: 120px 8%;
+    background: #ffffff;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.subtitle {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.about-header h2 {
+    font-size: 2.8rem;
+    color: var(--text-dark);
+    margin-top: 10px;
+}
+
+.underline {
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-image-wrapper {
+    position: relative;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
+}
+
+.experience-badge .number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.about-features { color: #555; }
+.main-para { font-size: 1.1rem; margin-bottom: 30px; line-height: 1.7; }
+.feature-item { display: flex; margin-bottom: 25px; align-items: flex-start; }
+
+.icon-box {
+    min-width: 50px;
+    height: 50px;
+    background: rgba(0, 210, 255, 0.1);
+    color: var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.feature-text h4 {
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+/* --- Services Section --- */
+.services {
+    padding: 100px 8%;
+    background: var(--bg-light);
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.service-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- Footer --- */
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 992px) {
+    .about-content { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.5rem; }
+    .experience-badge { right: 10px; }
+}
